@@ -3,6 +3,7 @@
 namespace App\Modelo;
 
 use App\Almacen\IAlmacenPalabras;
+use App\Modelo\Jugada;
 use DateTime;
 
 /**
@@ -30,10 +31,6 @@ class Partida {
      */
     private string $palabraDescubierta;
 
-    /**
-     * @var string $letras Lista de jugadas que ha realizado el jugador en la partida
-     */
-    private string $letras = "";
 
     /**
      * @var int $manNumErrores Número de errores permitido en la partida
@@ -56,6 +53,11 @@ class Partida {
      * @var int $idUsuario Identificador del usuario
      */
     private ?int $idUsuario = null;
+
+    /**
+     * @var array $jugadas Jugadas de la partida
+     */
+    private array $jugadas = [];
 
     /**
      * Constructor de la clase Partida
@@ -87,7 +89,7 @@ class Partida {
     /**
      * Establece el id de la partida
      * 
-     * @param int $id ifd de la partida
+     * @param int $id id de la partida
      * 
      * @returns void
      */
@@ -141,19 +143,9 @@ class Partida {
      * @returns string Listado de letras jugadas en la partida
      */
     public function getLetras(): string {
-        return $this->letras;
+        return join('',array_map(fn($jugada)=>$jugada->getLetra(), $this->getJugadas()));
     }
 
-    /**
-     * Establece el listado de letras jugadas en la partida
-     * 
-     * @param string $letras Listado de letras jugadas en la partida
-     * 
-     * @returns void
-     */
-    public function setLetras(string $letras): void {
-        $this->letras = $letras;
-    }
 
     /**
      * Recupera el número máximo de errores de la partida
@@ -280,7 +272,8 @@ class Partida {
      * 
      * @returns string El estado de la palabra descubierta
      */
-    public function compruebaLetra(string $letra): string {
+    public function compruebaLetra(Jugada $jugada): string {
+        $letra = $jugada->getLetra();
         $nuevaPalabraDescubierta = implode(array_map(function ($letraSecreta, $letraDescubierta) use ($letra) {
                     return ((strtoupper($letra) === $letraSecreta) ? $letraSecreta : $letraDescubierta);
                 }, str_split($this->getPalabraSecreta()), str_split($this->getPalabraDescubierta())));
@@ -289,7 +282,6 @@ class Partida {
         } else {
             $this->setPalabraDescubierta($nuevaPalabraDescubierta);
         }
-        $this->setLetras("{$this->getLetras()}$letra");
         return ($nuevaPalabraDescubierta);
     }
 
@@ -330,5 +322,23 @@ class Partida {
      */
     public function esFin(): bool {
         return ($this->esPalabraDescubierta() || ($this->getNumErrores() === $this->getMaxNumErrores()));
+    }
+
+    /**
+     * Agrega jugada al array de jugadas
+     * 
+     */
+    public function agregaJugada(Jugada $jugada): void {
+        $this->jugadas[] = $jugada;
+        if ($this->id !== null) {
+            $jugada->setIdPartida($this->id);
+        }
+    }
+    
+    /**
+     * Obtiene las jugadas
+     */
+    public function getJugadas(): array {
+        return $this->jugadas;
     }
 }
