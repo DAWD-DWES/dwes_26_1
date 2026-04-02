@@ -52,7 +52,6 @@ class PartidaDAO {
             ':numErrores' => $partida->getNumErrores(),
             ':palabraSecreta' => $partida->getPalabraSecreta(),
             ':palabraDescubierta' => $partida->getPalabraDescubierta(),
-            ':letras' => $partida->getLetras(),
             ':maxNumErrores' => $partida->getMaxNumErrores(),
             ':inicio' => ($partida->getInicio())->format('Y-m-d H:i:s'),
             ':fin' => ($partida->getFin()) ? ($partida->getFin())->format('Y-m-d H:i:s') : null,

@@ -285,25 +285,6 @@ class Partida {
         return ($nuevaPalabraDescubierta);
     }
 
-    /**
-     * Comprueba la palabra usada por el jugador, modifica el estado de la palabra descubierta y del número de errores
-     * 
-     * @param string $palabra Palabra usada para resolver la partida
-     * 
-     * @returns bool El resultado de comparar la palabra del jugador y la palabra secreta
-     */
-    public function compruebaPalabra(string $palabra): bool {
-        // Compara las cadenas sin importar mayúsculas y minúsculas
-        $resultado = strcasecmp($palabra, $this->getPalabraSecreta()) === 0;
-
-        if ($resultado) {
-            $this->setPalabraDescubierta($this->getPalabraSecreta());
-        } else {
-            $this->setNumErrores($this->getMaxNumErrores()); // Establece en número de errores al máximo
-        }
-
-        return $resultado;
-    }
 
     /**
      * Comprueba si la palabra oculta el juego ya ha sido descubierta

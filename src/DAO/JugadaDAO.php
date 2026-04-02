@@ -38,19 +38,10 @@ class JugadaDAO {
     }
 
     public function modifica(Jugada $jugada): bool {
+        
     }
 
     public function elimina(int $id): bool {
         
     }
-
-    public function recuperaPorIdPartida(int $idPartida): array {
-        $sql = "select id, letra, UNIX_TIMESTAMP(fechaCreacion) as fechaCreacion, esCorrecta, idPartida from jugadas where idPartida = :idPartida;";
-        $sth = $this->bd->prepare($sql);
-        $sth->execute(["idPartida" => $idPartida]);
-        $sth->setFetchMode(PDO::FETCH_CLASS, Jugada::class);
-        $jugadas = $sth->fetchAll();
-        return $jugadas;
-    }
-
 }
