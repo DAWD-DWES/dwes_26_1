@@ -83,17 +83,6 @@ if (isset($_SESSION['usuario'])) {
 // Sigo jugando
         echo $blade->run("juego", compact('usuario', 'partida', 'error'));
 // Si no si se solicita una nueva partida
-    } elseif (filter_has_var(INPUT_GET, 'botoniniciojuego')) {
-        try {
-            $partidasInacabadas = $partidaDAO->recuperaInacabadasPorIdUsuario($usuario->getId());
-// Invoco la vista del juego para empezar a jugar
-            echo $blade->run("juegoinicio", compact('usuario', 'partidasInacabadas'));
-            // Si no si se resuelve la partida con una palabra
-        } catch (PDOException $ex) {
-            error_log("Error PDO: " . $ex->getMessage());
-            header("Location:juego.php?botonnuevapartida");
-            die;
-        }
     } elseif (filter_has_var(INPUT_GET, 'botonnuevapartida')) { // Se arranca una nueva partida
         $rutaFichero = $_ENV['RUTA_ALMACEN_PALABRAS'];
         $almacenPalabras = new AlmacenPalabrasFichero($rutaFichero);
@@ -109,17 +98,6 @@ if (isset($_SESSION['usuario'])) {
         echo $blade->run("juego", compact('usuario', 'partida'));
 // Invoco la vista del juego para empezar a jugar
         // Si no si se resuelve la partida con una palabra
-    } elseif (filter_has_var(INPUT_GET, 'botonjuegapartida')) {
-        $partidaid = filter_input(INPUT_GET, 'partidaid', FILTER_VALIDATE_INT);
-        try {
-            $partida = $partidaDAO->recuperaPorId((int) $partidaid);
-            $_SESSION['partida'] = $partida;
-            echo $blade->run("juego", compact('usuario', 'partida'));
-        } catch (PDOException $ex) {
-            error_log("Error PDO: " . $ex->getMessage());
-            header("Location:juego.php?botonnuevapartida");
-            die;
-        }
     } else { //En cualquier otro caso
         echo $blade->run("juego", compact('usuario', 'partida'));
     }
