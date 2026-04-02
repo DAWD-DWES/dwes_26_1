@@ -14,18 +14,11 @@
  *       Establezco la fecha de fin
  *       Actualizo la partida en la BBDD
  *     Invoco la vista de juego con los datos obtenidos
- *   Si no si se solicita un inicio de partida
- *      Recupero las partidas inacabadas del usuario
- *      Invoco la vista de partidas inacabadas
  *   Si no si se solicita una nueva partida
  *      Crea una partida
  *      Se almacena en la sesión
  *      Crea la partida en la BBDD
  *      Invoco la vista del juego para empezar a jugar
- *   Si no si se solicita jugar con una partida inacabada
- *      Recupero la partida inacabada
- *      LA 
- *      Invoco la vista de juego con la partida inacabada
  *   Si no Invoco la vista de juego
  *  Si no (En cualquier otro caso)
  *      Invoco la vista del formulario de login
