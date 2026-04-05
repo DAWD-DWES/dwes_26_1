@@ -9,7 +9,7 @@
  *   Si se pide jugar con una letra
  *     Leo la letra
  *     Si no hay error en la letra introducida
- * Creo un objeto de la clase Jugada
+ *       Creo un objeto de la clase Jugada
  *       Solicito a la partida que compruebe la jugada
  *       Agrego la jugada a la partida
  *       Persisto la jugada
