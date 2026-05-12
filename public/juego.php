@@ -69,7 +69,6 @@ if (isset($_SESSION['usuario'])) {
         if (!$error) {
             $jugada = new Jugada(strtoupper($letra), new DateTime("now"));
             $partida->compruebaLetra($jugada);
-            $partida->agregaJugada($jugada);
             $jugada->setIdPartida($partida->getId());
             $jugadaDAO->crea($jugada);
             if ($partida->esFin()) {

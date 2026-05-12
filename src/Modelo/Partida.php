@@ -140,7 +140,7 @@ class Partida {
     /**
      * Recupera el listado de letras jugadas en la partida
      * 
-     * @returns string Listado de letras jugadas en la partida
+     * @returns string cadena con las letras jugadas en la partida
      */
     public function getLetras(): string {
         return join('',array_map(fn($jugada)=>$jugada->getLetra(), $this->getJugadas()));
@@ -268,7 +268,7 @@ class Partida {
     /**
      * Comprueba la letra elegida por el jugador, modifica el estado de la palabra descubierta y añade la letra
      * 
-     * @param string $letra Letra elegida por el jugador
+     * @param Jugada $jugada jugada enviada por el jugador
      * 
      * @returns string El estado de la palabra descubierta
      */
@@ -282,6 +282,7 @@ class Partida {
         } else {
             $this->setPalabraDescubierta($nuevaPalabraDescubierta);
         }
+        $this->agregaJugada($jugada);
         return ($nuevaPalabraDescubierta);
     }
 
@@ -308,6 +309,9 @@ class Partida {
     /**
      * Agrega jugada al array de jugadas
      * 
+     * @param Jugada $jugada jugada enviada por el jugador
+     * 
+     * @returns void
      */
     public function agregaJugada(Jugada $jugada): void {
         $this->jugadas[] = $jugada;
@@ -317,7 +321,9 @@ class Partida {
     }
     
     /**
-     * Obtiene las jugadas
+     * Obtiene el array de jugadas de la partida
+     * 
+     *  @returns array de jugadas de la partida
      */
     public function getJugadas(): array {
         return $this->jugadas;
