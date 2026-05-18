@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hangman_26_2`
+-- Base de datos: `hangman_26_1`
 --
-CREATE DATABASE IF NOT EXISTS `hangman_26_2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
-USE `hangman_26_2`;
+CREATE DATABASE IF NOT EXISTS `hangman_26_1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci;
+USE `hangman_26_1`;
 
 -- --------------------------------------------------------
 
