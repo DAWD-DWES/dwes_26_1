@@ -20,7 +20,8 @@ class Jugada {
     private string $letra;
 
     /**
-     * @var int $fechaCreacion Timestamp de la llegada de la jugada
+     * @var int $fechaCreacion Timestamp 
+     * de la llegada de la jugada
      */
     private int $fechaCreacion;
 
@@ -30,9 +31,9 @@ class Jugada {
      */
     private int $idPartida;
     
-    public function __construct(string $letra, DateTime $fechaCreacion) {
+    public function __construct(string $letra) {
         $this->setLetra($letra);
-        $this->setFechaCreacion($fechaCreacion);
+        $this->setFechaCreacion(new DateTime('now'));
     }
     
     public function getId(): ?int {

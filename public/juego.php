@@ -67,7 +67,7 @@ if (isset($_SESSION['usuario'])) {
         $error = !$partida->esLetraValida($letra);
 // Si no hay error compruebo la letra
         if (!$error) {
-            $jugada = new Jugada(strtoupper($letra), new DateTime("now"));
+            $jugada = new Jugada(strtoupper($letra));
             $partida->compruebaLetra($jugada);
             $jugada->setIdPartida($partida->getId());
             $jugadaDAO->crea($jugada);

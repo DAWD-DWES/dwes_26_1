@@ -143,7 +143,7 @@ class Partida {
      * @returns string cadena con las letras jugadas en la partida
      */
     public function getLetras(): string {
-        return join('',array_map(fn($jugada)=>$jugada->getLetra(), $this->getJugadas()));
+        return implode('',array_map(fn($jugada)=>$jugada->getLetra(), $this->getJugadas()));
     }
 
 
