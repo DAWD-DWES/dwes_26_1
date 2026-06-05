@@ -38,7 +38,6 @@
         @yield('content')
         <!-- Asegúrate de usar la ruta correcta a Bootstrap 5.1 JS aquí -->
         <script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/jquery/jquery-3.6.0.min.js"></script>
         @stack('scripts')
     </body>
 </html>
