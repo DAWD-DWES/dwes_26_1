@@ -315,9 +315,6 @@ class Partida {
      */
     public function agregaJugada(Jugada $jugada): void {
         $this->jugadas[] = $jugada;
-        if ($this->id !== null) {
-            $jugada->setIdPartida($this->id);
-        }
     }
     
     /**

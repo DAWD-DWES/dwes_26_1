@@ -30,9 +30,15 @@ require "../vendor/autoload.php";
 
 use eftec\bladeone\BladeOne;
 use App\BD\BD;
-use App\Modelo\{Partida, Jugada};
+use App\Modelo\{
+    Partida,
+    Jugada
+};
 use App\Almacen\AlmacenPalabrasFichero;
-use App\DAO\{PartidaDAO, JugadaDAO};
+use App\DAO\{
+    PartidaDAO,
+    JugadaDAO
+};
 
 session_start();
 
@@ -67,15 +73,14 @@ if (isset($_SESSION['usuario'])) {
         $error = !$partida->esLetraValida($letra);
 // Si no hay error compruebo la letra
         if (!$error) {
-            $jugada = new Jugada(strtoupper($letra));
-            $partida->compruebaLetra($jugada);
-            $jugada->setIdPartida($partida->getId());
-            $jugadaDAO->crea($jugada);
-            if ($partida->esFin()) {
-                $partida->setFin(new DateTime('now'));
-            }
             try {
-                
+                $jugada = new Jugada(strtoupper($letra));
+                $partida->compruebaLetra($jugada);
+                $jugada->setIdPartida($partida->getId());
+                $jugadaDAO->crea($jugada);
+                if ($partida->esFin()) {
+                    $partida->setFin(new DateTime('now'));
+                }
                 $partidaDAO->modifica($partida);
             } catch (PDOException $ex) {
                 error_log($ex->getMessage());
